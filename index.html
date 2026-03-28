@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETRAAM LUXURY | Order Online</title>
+    <style>
+        :root { --gold: #b59410; --black: #1a1a1a; }
+        body { font-family: 'Georgia', serif; margin: 0; background: #fff; color: var(--black); }
+        
+        /* Header */
+        header { padding: 20px; text-align: center; border-bottom: 1px solid #eee; position: sticky; top: 0; background: white; z-index: 100; }
+        .logo { font-size: 30px; letter-spacing: 8px; font-weight: bold; text-transform: uppercase; }
+
+        /* Hero */
+        .hero { padding: 60px 20px; text-align: center; background: #fdfdfd; }
+        .hero h1 { font-size: 40px; margin-bottom: 10px; letter-spacing: 2px; }
+
+        /* Products */
+        .container { max-width: 1000px; margin: auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { border: 1px solid #eee; padding: 15px; text-align: center; transition: 0.3s; }
+        .card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .card img { width: 100%; height: 300px; object-fit: cover; margin-bottom: 15px; }
+        .card h3 { font-size: 20px; letter-spacing: 1px; }
+        .price { color: var(--gold); font-size: 22px; margin: 10px 0; font-weight: bold; }
+
+        /* Order Button */
+        .order-btn { 
+            background: var(--black); color: white; border: none; padding: 12px 25px; 
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; width: 100%; 
+            font-size: 14px; transition: 0.3s;
+        }
+        .order-btn:hover { background: #444; }
+
+        footer { text-align: center; padding: 40px; font-size: 12px; color: #888; border-top: 1px solid #eee; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ETRAAM</div>
+        <p style="font-size: 10px; letter-spacing: 2px; color: #888;">LUXURY FRAGRANCE HOUSE</p>
+    </header>
+
+    <section class="hero">
+        <h1>Essential Luxury</h1>
+        <p>Premium perfumes delivered from Kanpur to your doorstep.</p>
+    </section>
+
+    <div class="container">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1594035910387-fea47734265f?auto=format&fit=crop&w=500" alt="Noir Velvet">
+            <h3>NOIR VELVET</h3>
+            <p>Oud & Spiced Saffron</p>
+            <p class="price">₹2,499</p>
+            <button class="order-btn" onclick="placeOrder('Noir Velvet', '2499')">Order via WhatsApp</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=500" alt="Oasis Mist">
+            <h3>OASIS MIST</h3>
+            <p>Fresh Citrus & Sea Salt</p>
+            <p class="price">₹2,199</p>
+            <button class="order-btn" onclick="placeOrder('Oasis Mist', '2199')">Order via WhatsApp</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=500" alt="Royal Oud">
+            <h3>ROYAL OUD</h3>
+            <p>Heritage Musk & Sandalwood</p>
+            <p class="price">₹3,299</p>
+            <button class="order-btn" onclick="placeOrder('Royal Oud', '3299')">Order via WhatsApp</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Naveen Market, Kanpur | Brahm Nagar, Unnao</p>
+        <p>&copy; 2026 ETRAAM LUXURY</p>
+    </footer>
+
+    <script>
+        function placeOrder(name, price) {
+            // APNA NUMBER YAHAN DAALEIN (With Country Code 91)
+            const myNumber = "91XXXXXXXXXX"; 
+            
+            const message = `Hello ETRAAM! I would like to order:\n\n*Product:* ${name}\n*Price:* ₹${price}\n\nPlease share payment details.`;
+            
+            // WhatsApp Link Generate karna
+            const whatsappURL = `https://wa.me/${myNumber}?text=${encodeURIComponent(message)}`;
+            
+            // Naye tab mein kholna
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+
+</body>
+</html>
