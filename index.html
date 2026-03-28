@@ -3,97 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETRAAM LUXURY | Premium Fragrances</title>
+    <title>ETRAAM LUXURY | Essential Fragrances</title>
     <style>
-        :root { --gold: #b59410; --black: #1a1a1a; --gray: #f4f4f4; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Times New Roman', serif; }
+        :root { --gold: #b59410; --black: #121212; --bg: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Playfair Display', serif, 'Georgia'; }
         
-        body { background: #fff; color: var(--black); line-height: 1.6; }
+        body { background: var(--bg); color: var(--black); line-height: 1.6; scroll-behavior: smooth; }
         
-        /* Header & Navigation */
-        header { padding: 20px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; background: white; z-index: 1000; text-align: center; }
-        .logo { font-size: 35px; letter-spacing: 10px; font-weight: bold; text-transform: uppercase; text-decoration: none; color: #000; display: block; margin-bottom: 10px; }
-        
-        nav { display: flex; justify-content: center; gap: 20px; border-top: 1px solid #f9f9f9; padding-top: 10px; }
-        nav a { text-decoration: none; color: #666; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        /* Header */
+        header { padding: 30px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; background: white; z-index: 1000; text-align: center; }
+        .logo { font-size: 38px; letter-spacing: 12px; font-weight: bold; text-transform: uppercase; text-decoration: none; color: #000; display: block; }
+        .tagline { font-size: 10px; letter-spacing: 4px; color: #888; text-transform: uppercase; margin-top: 5px; }
+
+        /* Navigation */
+        nav { display: flex; justify-content: center; gap: 25px; padding: 15px 0; background: #fff; border-bottom: 1px solid #f9f9f9; }
+        nav a { text-decoration: none; color: #444; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; }
         nav a:hover { color: var(--gold); }
 
-        /* Hero Section */
-        .hero { padding: 80px 20px; text-align: center; background: #fafafa; border-bottom: 1px solid #eee; }
-        .hero h1 { font-size: 45px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 15px; }
-        .hero p { color: #888; letter-spacing: 1px; font-style: italic; }
+        /* Section Styling */
+        .section-header { text-align: center; padding: 80px 20px 40px; }
+        .section-header h2 { font-size: 28px; text-transform: uppercase; letter-spacing: 6px; position: relative; display: inline-block; }
+        .section-header h2::after { content: ''; display: block; width: 40%; height: 1px; background: var(--gold); margin: 10px auto; }
 
-        /* Category Sections */
-        .section-title { text-align: center; padding: 60px 0 20px; text-transform: uppercase; letter-spacing: 5px; font-size: 24px; color: var(--black); position: relative; }
-        .section-title::after { content: ''; display: block; width: 50px; height: 1px; background: var(--gold); margin: 15px auto; }
+        .container { max-width: 1200px; margin: auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
 
-        .container { max-width: 1100px; margin: auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        
         /* Product Card */
-        .card { border: 1px solid #f0f0f0; padding: 15px; text-align: center; transition: 0.4s; background: #fff; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-color: var(--gold); }
-        .card img { width: 100%; height: 320px; object-fit: cover; margin-bottom: 15px; background: var(--gray); }
-        .card h3 { font-size: 18px; letter-spacing: 2px; margin-bottom: 5px; }
-        .card .desc { font-size: 13px; color: #888; margin-bottom: 10px; height: 40px; }
-        .price { color: var(--gold); font-size: 20px; margin: 10px 0; font-weight: bold; }
+        .card { border: 1px solid #f2f2f2; padding: 20px; text-align: center; transition: 0.5s; background: #fff; position: relative; overflow: hidden; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.05); border-color: var(--gold); }
+        .card img { width: 100%; height: 350px; object-fit: cover; margin-bottom: 20px; filter: grayscale(20%); transition: 0.5s; }
+        .card:hover img { filter: grayscale(0%); }
+        
+        .card h3 { font-size: 20px; letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase; }
+        .card .desc { font-size: 13px; color: #777; margin-bottom: 15px; font-style: italic; }
+        .price { color: var(--black); font-size: 22px; margin-bottom: 20px; font-weight: bold; font-family: 'Arial'; }
 
-        /* Buttons */
+        /* Order Button */
         .order-btn { 
-            background: var(--black); color: white; border: none; padding: 12px; 
-            cursor: pointer; text-transform: uppercase; letter-spacing: 2px; width: 100%; 
-            font-size: 11px; transition: 0.3s;
+            background: var(--black); color: white; border: none; padding: 14px; 
+            cursor: pointer; text-transform: uppercase; letter-spacing: 3px; width: 100%; 
+            font-size: 11px; transition: 0.4s;
         }
         .order-btn:hover { background: var(--gold); }
 
-        footer { text-align: center; padding: 60px 20px; background: #1a1a1a; color: #fff; margin-top: 80px; }
-        footer p { font-size: 12px; letter-spacing: 2px; opacity: 0.6; }
-        
-        html { scroll-behavior: smooth; }
+        /* Luxury Card Special Styling */
+        .luxury-card { border: 2px solid var(--gold) !important; background: #fffcf5; }
+        .luxury-tag { background: var(--gold); color: white; padding: 5px 15px; font-size: 10px; position: absolute; top: 0; left: 0; text-transform: uppercase; letter-spacing: 2px; }
+
+        footer { text-align: center; padding: 80px 20px; background: #fafafa; border-top: 1px solid #eee; margin-top: 50px; }
+        .footer-logo { font-size: 24px; letter-spacing: 6px; margin-bottom: 15px; }
+        .footer-info { font-size: 12px; color: #999; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
     <header>
         <a href="#" class="logo">ETRAAM</a>
-        <nav>
-            <a href="#mens">For Him</a>
-            <a href="#womens">For Her</a>
-            <a href="#unisex">Unisex</a>
-            <a href="#luxury">Luxury Edition</a>
-        </nav>
+        <p class="tagline">Heritage | Luxury | Art</p>
     </header>
 
-    <section class="hero">
-        <h1>Essential Luxury</h1>
-        <p>Crafted in Kanpur. Inspired by Heritage.</p>
-    </section>
+    <nav>
+        <a href="#unisex">Unisex Collection</a>
+        <a href="#luxury">The Darbaar Edition</a>
+        <a href="#about">Our Story</a>
+    </nav>
 
-    <h2 class="section-title" id="mens">For Him</h2>
+    <div class="section-header" id="unisex">
+        <h2>Unisex Collection</h2>
+    </div>
+    
     <div class="container">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=400" alt="Men 1">
-            <h3>NOIR VELVET</h3>
-            <p class="desc">Deep Oud & Spiced Saffron</p>
+            <img src="https://images.unsplash.com/photo-1594035910387-fea47734265f?auto=format&fit=crop&w=500" alt="Noor e Ishq">
+            <h3>Noor-e-Ishq</h3>
+            <p class="desc">A divine light of floral & musk notes.</p>
             <p class="price">₹2,499</p>
-            <button class="order-btn" onclick="placeOrder('Noir Velvet', '2499', 'Men')">Order on WhatsApp</button>
+            <button class="order-btn" onclick="placeOrder('Noor-e-Ishq', '2499', 'Unisex')">Order via WhatsApp</button>
         </div>
+
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1557170334-a9632e77c6e4?auto=format&fit=crop&w=400" alt="Men 2">
-            <h3>URBAN LEATHER</h3>
-            <p class="desc">Smoky Tobacco & Leather</p>
+            <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=500" alt="Etraam Classical">
+            <h3>Etraam Classical</h3>
+            <p class="desc">Timeless heritage in every drop.</p>
+            <p class="price">₹2,199</p>
+            <button class="order-btn" onclick="placeOrder('Etraam Classical', '2199', 'Unisex')">Order via WhatsApp</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=500" alt="Mehfooza e Ishq">
+            <h3>Mehfooza-e-Ishq</h3>
+            <p class="desc">The essence of protected love & warmth.</p>
+            <p class="price">₹2,799</p>
+            <button class="order-btn" onclick="placeOrder('Mehfooza-e-Ishq', '2799', 'Unisex')">Order via WhatsApp</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=500" alt="Etraam Original">
+            <h3>Etraam Original</h3>
+            <p class="desc">The signature scent that started it all.</p>
             <p class="price">₹1,999</p>
-            <button class="order-btn" onclick="placeOrder('Urban Leather', '1999', 'Men')">Order on WhatsApp</button>
+            <button class="order-btn" onclick="placeOrder('Etraam Original', '1999', 'Unisex')">Order via WhatsApp</button>
         </div>
     </div>
 
-    <h2 class="section-title" id="womens">For Her</h2>
+    <div class="section-header" id="luxury">
+        <h2>Luxury Edition</h2>
+    </div>
+
     <div class="container">
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=400" alt="Women 1">
-            <h3>ROSE MUSK</h3>
-            <p class="desc">Velvet Rose & White Musk</p>
-            <p class="price">₹2,299</p>
-            <button class="order-btn" onclick="placeOrder('Rose Musk', '2299', 'Women')">Order on WhatsApp</button>
+        <div class="card luxury-card">
+            <div class="luxury-tag">Limited Edition</div>
+            <img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=500" alt="Etraam Darbaar">
+            <h3>Etraam Darbaar</h3>
+            <p class="desc">Rich Oud & Royal Amber. Experience the majesty.</p>
+            <p class="price">₹4,999</p>
+            <button class="order-btn" style="background: var(--gold);" onclick="placeOrder('Etraam Darbaar', '4999', 'Luxury')">Access the Darbaar</button>
         </div>
-        <div class="card">
-            <img src="
+    </div>
+
+    <footer id="about">
+        <div class="footer-logo">ETRAAM</div>
+        <p class="footer-info">Handcrafted in Kanpur | Curated for the Connoisseur</p>
+        <p class="footer-info">Naveen Market, Kanpur | Brahm Nagar, Unnao</p>
+        <br>
+        <p style="font-size: 10px; opacity: 0.5;">&copy; 2026 ETRAAM LUXURY FRAGRANCES</p>
+    </footer>
+
+    <script>
+        function placeOrder(name, price, cat) {
+            // APNA NUMBER YAHAN DAALEIN (With 91)
+            const myNumber = "91XXXXXXXXXX"; 
+            
+            const message = `Hello ETRAAM!\n\nI want to experience the ${cat} collection.\nProduct: *${name}*\nPrice: ₹${price}\n\nPlease guide me with the next steps.`;
+            
+            const whatsappURL = `https://wa.me/${myNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>
