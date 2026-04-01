@@ -3,120 +3,318 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETRAAM Luxury - Order Now</title>
+    <title>ETRAAM | Maison de Parfum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* 1. Announcement Bar का डिज़ाइन */
-        .promo-bar {
-            background: #1a1a1a; /* गहरा काला रंग */
-            color: #d4af37; /* गोल्डन लिखावट */
-            overflow: hidden; /* पट्टी के बाहर कुछ न दिखे */
-            white-space: nowrap; /* टेक्स्ट एक ही लाइन में रहे */
-            padding: 8px 0;
-            font-size: 13px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            position: sticky; /* स्क्रीन के टॉप पर चिपका रहे */
+        :root {
+            --gold: #b38f36;
+            --black: #121212;
+            --white: #ffffff;
+            --beige: #faf9f6;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            background-color: var(--beige);
+            color: var(--black);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            position: sticky;
             top: 0;
-            z-index: 2001;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        /* 2. चलने वाला एनीमेशन (Motion) */
-        .promo-text {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 15s linear infinite; /* 15 सेकंड में एक चक्कर */
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 4px;
         }
 
-        @keyframes marquee {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
+        .cart-icon {
+            cursor: pointer;
+            position: relative;
+            font-size: 18px;
         }
 
-        /* बाकी पुराना डिज़ाइन */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #faf9f6; padding-bottom: 120px; }
-        .header { height: 300px; background: url('https://i.imgur.com/8QO9yR7.jpeg') no-repeat center center; background-size: cover; display: flex; align-items: flex-end; }
-        .overlay { width: 100%; padding: 30px 20px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: white; }
-        .overlay h1 { margin: 0; letter-spacing: 5px; font-size: 26px; border-bottom: 2px solid #d4af37; display: inline-block; }
-        .container { padding: 20px; }
-        .product-card { background: white; border-radius: 12px; padding: 18px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 2px solid transparent; cursor: pointer; transition: 0.3s; }
-        .product-card.selected { border: 2px solid #d4af37; background-color: #fffef0; }
-        .price { color: #27ae60; font-weight: bold; font-size: 18px; }
-        .footer { position: fixed; bottom: 0; width: 100%; background: white; display: flex; gap: 10px; padding: 15px; box-sizing: border-box; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 1000; }
-        .btn { flex: 1; padding: 16px; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; font-size: 14px; }
-        .btn-call { background: #f1f1f1; color: #4e342e; border: 1px solid #4e342e; }
-        .btn-wa { background: #25D366; color: white; }
+        .cart-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--gold);
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://i.imgur.com/8QO9yR7.jpeg') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        /* --- CATEGORIES --- */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px;
+            overflow-x: auto;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+        .filter-btn.active {
+            background: var(--black);
+            color: white;
+            border-color: var(--black);
+        }
+
+        /* --- PRODUCT GRID --- */
+        .shop-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 0 40px 40px;
+        }
+
+        .product-card {
+            background: white;
+            padding: 20px;
+            border-radius: 4px;
+            transition: 0.4s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--gold);
+            color: white;
+            font-size: 10px;
+            padding: 4px 10px;
+            text-transform: uppercase;
+        }
+
+        .product-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            margin: 15px 0 5px;
+        }
+
+        .product-card .desc {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .product-card .price {
+            font-weight: 600;
+            color: var(--gold);
+            font-size: 20px;
+        }
+
+        .add-to-cart {
+            margin-top: 15px;
+            width: 100%;
+            padding: 12px;
+            background: var(--black);
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 11px;
+        }
+
+        /* --- CART SIDEBAR --- */
+        .cart-sidebar {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 350px;
+            height: 100%;
+            background: white;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            transition: 0.5s;
+            z-index: 2000;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .cart-sidebar.open { right: 0; }
+
+        .close-cart { cursor: pointer; font-size: 24px; margin-bottom: 30px; }
+
+        .cart-items { height: 60%; overflow-y: auto; }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 18px;
+            background: #25D366;
+            color: white;
+            border: none;
+            font-weight: 600;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .logo { font-size: 24px; }
+            .shop-container { padding: 20px; }
+            .cart-sidebar { width: 100%; right: -100%; }
+        }
     </style>
 </head>
 <body>
 
-<div class="promo-bar">
-    <div class="promo-text">
-        ✨ RAMADAN SPECIAL: BUY 1 GET 1 FREE ON ALL ATTARS! 🌙 | FREE DELIVERY ON ORDERS ABOVE ₹2000 | LIMITED TIME OFFER! ✨
-    </div>
-</div>
+    <nav>
+        <div class="logo">ETRAAM</div>
+        <div class="cart-icon" onclick="toggleCart()">
+            BAG <span class="cart-badge" id="count">0</span>
+        </div>
+    </nav>
 
-<div class="header">
-    <div class="overlay">
-        <h1>ETRAAM</h1>
-        <p>Curated by Aman Sharma | Naveen Market</p>
-    </div>
-</div>
-
-<div class="container">
-    <h2 style="color: #4e342e; font-size: 18px; margin-bottom: 20px;">Choose your Fragrance:</h2>
-    
-    <div class="product-card" onclick="toggleSelect(this, 'Mughal Oud', 2000)">
-        <div class="info"><h3>Mughal Oud</h3><p>Royal Saffron & Agarwood</p></div>
-        <div class="price">₹2,000</div>
+    <div class="hero">
+        <h2>Essence of Luxury</h2>
+        <p>Buy 1 Get 1 Free on Signature Collections</p>
     </div>
 
-    <div class="product-card" onclick="toggleSelect(this, 'Kannauj Gulab', 1000)">
-        <div class="info"><h3>Kannauj Gulab</h3><p>Natural Rose Extract</p></div>
-        <div class="price">₹1,000</div>
+    <div class="filters">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Oud</button>
+        <button class="filter-btn">Floral</button>
+        <button class="filter-btn">Musk</button>
     </div>
 
-    <div class="product-card" onclick="toggleSelect(this, 'Drape Special', 500)">
-        <div class="info"><h3>Drape Special</h3><p>Amber & Velvet Musk</p></div>
-        <div class="price">₹500</div>
+    <div class="shop-container" id="product-grid">
+        <div class="product-card">
+            <div class="tag">Bestseller</div>
+            <h3>Mughal Oud</h3>
+            <p class="desc">Deep, Smokey, Agarwood</p>
+            <div class="price">₹2,000</div>
+            <button class="add-to-cart" onclick="addToCart('Mughal Oud', 2000)">Add to Bag</button>
+        </div>
+
+        <div class="product-card">
+            <div class="tag">Offer</div>
+            <h3>Kannauj Gulab</h3>
+            <p class="desc">Pure Steam-Distilled Rose</p>
+            <div class="price">₹1,000</div>
+            <button class="add-to-cart" onclick="addToCart('Kannauj Gulab', 1000)">Add to Bag</button>
+        </div>
+
+        <div class="product-card">
+            <h3>Drape Special</h3>
+            <p class="desc">Amber & Velvet Musk Blend</p>
+            <div class="price">₹500</div>
+            <button class="add-to-cart" onclick="addToCart('Drape Special', 500)">Add to Bag</button>
+        </div>
     </div>
-</div>
 
-<div class="footer">
-    <a href="tel:7054157666" class="btn btn-call">CALL SHOP</a>
-    <button class="btn btn-wa" onclick="sendWhatsApp()">ORDER ON WHATSAPP (<span id="count">0</span>)</button>
-</div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="close-cart" onclick="toggleCart()">×</div>
+        <h2 style="font-family: 'Cormorant Garamond', serif;">Your Selection</h2>
+        <div class="cart-items" id="cartItems">
+            </div>
+        <div class="total-box">
+            <h4 style="display: flex; justify-content: space-between;">Total: <span id="totalPrice">₹0</span></h4>
+            <button class="checkout-btn" onclick="checkout()">ORDER ON WHATSAPP</button>
+        </div>
+    </div>
 
-<script>
-    let cart = [];
-    let total = 0;
+    <script>
+        let cart = [];
+        let total = 0;
 
-    function toggleSelect(element, name, price) {
-        element.classList.toggle('selected');
-        const index = cart.findIndex(item => item.name === name);
-        if (index > -1) {
-            cart.splice(index, 1);
-            total -= price;
-        } else {
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('open');
+        }
+
+        function addToCart(name, price) {
             cart.push({name, price});
             total += price;
+            updateUI();
+            
+            // लग्जरी एहसास के लिए: सामान जोड़ते ही कार्ट खुल जाएगा
+            if(!document.getElementById('cartSidebar').classList.contains('open')){
+                toggleCart();
+            }
         }
-        document.getElementById('count').innerText = cart.length;
-    }
 
-    function sendWhatsApp() {
-        if(cart.length === 0) { alert("Please select a perfume first!"); return; }
-        let message = "Hello Swastik! I want to order from ETRAAM:%0A%0A";
-        cart.forEach((item, index) => { message += `${index + 1}. ${item.name} - ₹${item.price}%0A`; });
-        message += `%0A*Total Amount: ₹${total}*%0A%0APlease confirm my order.`;
-        const waLink = `https://wa.me/917054157666?text=${message}`;
-        window.open(waLink, '_blank');
-    }
-</script>
+        function updateUI() {
+            document.getElementById('count').innerText = cart.length;
+            document.getElementById('totalPrice').innerText = "₹" + total;
+            
+            const cartItemsContainer = document.getElementById('cartItems');
+            cartItemsContainer.innerHTML = '';
+            
+            cart.forEach((item, index) => {
+                cartItemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <span>${item.name}</span>
+                        <span>₹${item.price}</span>
+                    </div>
+                `;
+            });
+        }
 
+        function checkout() {
+            if(cart.length === 0) return alert("Bag is empty!");
+            
+            let message = "ETRAAM LUXURY ORDER:%0A";
+            cart.forEach((item, i) => message += `${i+1}. ${item.name}%0A`);
+            message += `%0ATotal: ₹${total}`;
+            
+            window.open(`https://wa.me/917054157666?text=${message}`, '_blank');
+        }
+    </script>
 </body>
-</html>
-        
-  
-    
-  
-
+</html>    
+       
